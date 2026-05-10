@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Available Food Nearby</h2>
+
+{% if listings %}
+    {% for item in listings %}
+    <div class="card">
+        <h3>{{ item.title }} <span class="badge">Expires at {{ item.expiry_time.strftime('%Y-%m-%d %H:%M') }} Z</span></h3>
+        <p><strong>Location:</strong> {{ item.location }}</p>
+        <p>{{ item.description }}</p>
+        <p><small>Donor: {{ item.donor.username }}</small></p>
+        {% if current_user.is_authenticated and current_user.role == 'receiver' %}
+        <form action="/listing/{{ item.id }}/claim" method="POST">
+            <button type="submit">Claim This Food</button>
+        </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No food available right now. Check back later!</p>
+{% endif %}
+{% endblock %}

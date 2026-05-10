@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row w-100 justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm p-4">
+            <h2>List New Food Donation</h2>
+            <hr>
+            <form action="{{ url_for('new_listing') }}" method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Food Title</label>
+                    <input type="text" name="title" id="title" class="form-control" required placeholder="e.g. 5x Fresh Apples">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="food_type" class="form-label fw-bold text-success">Food Type</label>
+                    <select name="food_type" id="food_type" class="form-select" required>
+                        <option value="generic">Standard Food</option>
+                        <option value="perishable">Perishable (Very urgent expiry)</option>
+                        <option value="non_perishable">Non-Perishable (Canned/Shelf-stable)</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="description" id="description" class="form-control" required rows="3"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="location" class="form-label">Pickup Location</label>
+                    <input type="text" name="location" id="location" class="form-control" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="hours_valid" class="form-label">Hours Valid (before expiry)</label>
+                    <input type="number" name="hours_valid" id="hours_valid" class="form-control" value="2" min="1" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 py-2">List Food Entry</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

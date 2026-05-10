@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Food Claims</h2>
+{% for item in claims %}
+<div class="card">
+    <h4>{{ item.title }} - Status: <strong>{{ item.status }}</strong></h4>
+    <p>Pick up at: {{ item.location }}</p>
+    <p>Contact Donor: {{ item.donor.contact_info }}</p>
+    {% if item.status == 'Claimed' %}
+        <form action="/listing/{{ item.id }}/complete" method="POST">
+            <button type="submit">I have picked this up</button>
+        </form>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Donor Dashboard</h2>
+<a href="/listing/new" class="btn">+ Donate Food</a>
+<hr>
+<h3>My Donations</h3>
+{% for item in listings %}
+<div class="card">
+    <h4>{{ item.title }} - Status: <strong>{{ item.status }}</strong></h4>
+    <p>Claimed by: {{ item.receiver.username if item.receiver else 'None yet' }}</p>
+    {% if item.status == 'Claimed' %}
+        <form action="/listing/{{ item.id }}/complete" method="POST">
+            <button type="submit">Mark as Picked Up</button>
+        </form>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

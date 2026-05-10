@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+    <label>Username:</label><input type="text" name="username" required>
+    <label>Password:</label><input type="password" name="password" required>
+    <label>Role:</label>
+    <select name="role">
+        <option value="donor">Food Donor (Restaurant/Bakery)</option>
+        <option value="receiver">Receiver (Charity/Individual)</option>
+    </select>
+    <label>Contact Info (Phone/Email):</label><input type="text" name="contact_info" required>
+    <button type="submit">Register</button>
+</form>
+{% endblock %}
